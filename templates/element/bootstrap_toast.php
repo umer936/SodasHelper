@@ -4,7 +4,7 @@
 <style>
     .toast {
         position: sticky;
-        top: 0;
+        top: <?= $top ?? '0' ?>;
         float: right;
         z-index: 999;
     }
@@ -20,19 +20,31 @@
 /**
  * @var array $params
  * @var string $message
+ * @var string $id
  */
 $class = 'message';
 if (!empty($params['class'])) {
-    $class .= ' ' . $params['class'];
+    if (is_array($params['class'])) {
+        array_push($params['class'], $class);
+        $class = implode(' ', $params['class']);
+    }
+    else {
+        $class .= ' ' . $params['class'];
+    }
 }
+
 if (!isset($params['escape']) || $params['escape'] !== false) {
     $message = h($message);
+}
+
+if(!isset($id)) {
+    $id = uniqid();
 }
 
 //primary, secondary, success, danger, warning, info, light, dark
 ?>
 
-<div class="toast align-items-center text-white bg-<?= $alertColor ?? 'success' ?> border-0" role="alert" aria-live="assertive" aria-atomic="true">
+<div id="toast<?= $id ?>" class="toast align-items-center text-white bg-<?= $alertColor ?? 'success' ?> border-0" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="d-flex">
         <div class="toast-body">
             <?= $message ?>
@@ -43,6 +55,6 @@ if (!isset($params['escape']) || $params['escape'] !== false) {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 
 <script>
-    const toast = new bootstrap.Toast(document.getElementsByClassName('toast')[0]);
-    toast.show();
+    const toast<?= $id ?> = new bootstrap.Toast(document.getElementById('toast<?= $id ?>'));
+    toast<?= $id ?>.show();
 </script>
