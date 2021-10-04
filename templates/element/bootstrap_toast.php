@@ -1,6 +1,4 @@
 <!--Needs Bootstrap 5-->
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 <style>
     .toast {
         position: sticky;
@@ -10,6 +8,8 @@
     }
 </style>
 <?php
+
+echo $this->Html->script('SodasHelper.bootstrap_detect_or_load');
 
 // USAGE
 //echo $this->Flash->render('flash', [
@@ -52,9 +52,14 @@ if(!isset($id)) {
         <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 
 <script>
-    const toast<?= $id ?> = new bootstrap.Toast(document.getElementById('toast<?= $id ?>'));
-    toast<?= $id ?>.show();
+    document.addEventListener("DOMContentLoaded", function() {
+        if (bootstrapVersion.major === 5) {
+            const toast<?= $id ?> = new bootstrap.Toast(document.getElementById('toast<?= $id ?>'));
+            toast<?= $id ?>.show();
+        } else if (bootstrapVersion.major === 4 && window.jQuery) {
+            $('#toast<?= $id ?>').toast('show');
+        }
+    });
 </script>
