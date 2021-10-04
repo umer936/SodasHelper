@@ -21,7 +21,7 @@ if (!empty($params['class'])) {
         <p class="collapse" id="collapseText_<?= $id ?>" aria-expanded="false">
             <?= $text ?>
         </p>
-        <a role="button" class="collapsed<?= $class ?? '' ?>" data-bs-toggle="collapse" href="#collapseText_<?= $id ?>" aria-expanded="false" aria-controls="collapseText_<?= $id ?>"></a>
+        <a role="button" class="collapsed<?= $class ?? '' ?>" data-bs-toggle="collapse" data-toggle="collapse" href="#collapseText_<?= $id ?>" aria-expanded="false" aria-controls="collapseText_<?= $id ?>"></a>
     </div>
 <?php } else {
     echo $text;
