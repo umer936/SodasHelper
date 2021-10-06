@@ -9,8 +9,6 @@
 </style>
 <?php
 
-echo $this->Html->script('SodasHelper.bootstrap_detect_or_load');
-
 // USAGE
 //echo $this->Flash->render('flash', [
 //    'element' => 'SodasHelper.bootstrap_toast',
@@ -53,13 +51,12 @@ if(!isset($id)) {
     </div>
 </div>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        if (bootstrapVersion.major === 5) {
-            const toast<?= $id ?> = new bootstrap.Toast(document.getElementById('toast<?= $id ?>'));
-            toast<?= $id ?>.show();
-        } else if (bootstrapVersion.major === 4 && window.jQuery) {
-            $('#toast<?= $id ?>').toast('show');
-        }
-    });
+<script type="module">
+    import { bootstrapVersion } from '<?= $this->Url->script('SodasHelper.sodas_js_scripts') ?>';
+    if (bootstrapVersion.major === 5) {
+        const toast<?= $id ?> = new bootstrap.Toast(document.getElementById('toast<?= $id ?>'));
+        toast<?= $id ?>.show();
+    } else if (bootstrapVersion.major === 4 && window.jQuery) {
+        $('#toast<?= $id ?>').toast('show');
+    }
 </script>

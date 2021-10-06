@@ -2,7 +2,7 @@
 
 <?php
 
-echo $this->Html->script('SodasHelper.bootstrap_detect_or_load');
+echo $this->Html->script('SodasHelper.sodas_js_scripts', ['type' => 'module']);
 
 // USAGE
 //echo $this->element('SodasHelper.read_more', ['id' => 'test',

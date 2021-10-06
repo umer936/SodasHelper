@@ -1,3 +1,12 @@
+function ready(fn) {
+    if (document.readyState !== 'loading'){
+        fn();
+    } else {
+        document.addEventListener('DOMContentLoaded', fn);
+    }
+}
+export let bootstrapVersion;
+bootstrap_load_or_detect();
 
 function parseVersionString (str) {
     if (typeof(str) != 'string') { return false; }
@@ -12,9 +21,9 @@ function parseVersionString (str) {
         patch: pat
     }
 }
-let bootstrapVersion;
 
-document.addEventListener("DOMContentLoaded", function(){
+
+function bootstrap_load_or_detect() {
     if (typeof bootstrap === 'undefined') {
         // load bootstrap
         document.querySelector('head').innerHTML +=
@@ -36,4 +45,4 @@ document.addEventListener("DOMContentLoaded", function(){
     }
     bootstrapVersion = bootstrap.Tooltip.VERSION;
     bootstrapVersion = parseVersionString(bootstrapVersion);
-});
+}
