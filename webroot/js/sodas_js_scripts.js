@@ -1,10 +1,3 @@
-function ready(fn) {
-    if (document.readyState !== 'loading'){
-        fn();
-    } else {
-        document.addEventListener('DOMContentLoaded', fn);
-    }
-}
 export let bootstrapVersion;
 bootstrap_load_or_detect();
 
@@ -21,7 +14,6 @@ function parseVersionString (str) {
         patch: pat
     }
 }
-
 
 function bootstrap_load_or_detect() {
     if (typeof bootstrap === 'undefined') {
