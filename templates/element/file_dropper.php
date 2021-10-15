@@ -27,7 +27,7 @@
     $name =  $name ?? 'filename';
 ?>
 <div id="<?= $name ?>Upload">
-    <?= $this->Form->control($name, $options) ?>
+    <?= $this->Form->control($id ?? $name, $options) ?>
     <p id="<?= $name ?>Text" class="fileDropText">
         <?= $dropzoneText ?? '
         <i class="fa fa-upload" aria-hidden="true"></i>
