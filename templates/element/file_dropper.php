@@ -23,10 +23,11 @@
  **/
 
     $label = $label ?? 'Choose a file to upload:';
-    $options = array_merge($options ?? [], ['type' => 'file', 'label' => $label, 'class' => 'fileDrop']);
+    $options = array_merge($options ?? [], ['type' => 'file', 'label' => false, 'class' => 'fileDrop']);
     $name =  $name ?? 'filename';
 ?>
 <div id="<?= $name ?>Upload" class="fileDropBox">
+    <?= $this->Form->label($name, $label) ?>
     <?= $this->Form->control($id ?? $name, $options) ?>
     <p id="<?= $name ?>Text" class="fileDropText">
         <?= $dropzoneText ?? '
