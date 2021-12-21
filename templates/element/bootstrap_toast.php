@@ -9,16 +9,32 @@
 </style>
 <?php
 
-// USAGE
+// USAGE controller
 //echo $this->Flash->render('flash', [
 //    'element' => 'SodasHelper.bootstrap_toast',
 //    'alertColor' => 'warning',
 //])
 
+// USAGE template
+//echo $this->element('SodasHelper.bootstrap_toast', [
+//    'alertColor' => 'warning',
+//    'message' => 'testing',
+//    'top' => '60px',
+//    'id' => 'abc',
+//])
+// USAGE fire with example
+//<button id="fireABC">FIRE</button>
+//<script type="module">
+//    document.getElementById('fireABC').addEventListener('click', abcfire);
+//</script>
+
+//primary, secondary, success, danger, warning, info, light, dark
+
 /**
  * @var array $params
  * @var string $message
  * @var string $id
+ * @var bool $fire
  */
 $class = 'message';
 if (!empty($params['class'])) {
@@ -39,7 +55,6 @@ if(!isset($id)) {
     $id = uniqid();
 }
 
-//primary, secondary, success, danger, warning, info, light, dark
 ?>
 
 <div id="toast<?= $id ?>" class="toast align-items-center text-white bg-<?= $alertColor ?? 'success' ?> border-0" role="alert" aria-live="assertive" aria-atomic="true">
@@ -53,10 +68,24 @@ if(!isset($id)) {
 
 <script type="module">
     import { bootstrapVersion } from '<?= $this->Url->script('SodasHelper.sodas_js_scripts') ?>';
+    let <?= $id ?>fire;
+
+    const doFire = <?php
+        if (isset($fire)) {
+            echo 'true';
+        } else {
+            echo 'false';
+        } ?>;
     if (bootstrapVersion.major === 5) {
-        const toast<?= $id ?> = new bootstrap.Toast(document.getElementById('toast<?= $id ?>'));
-        toast<?= $id ?>.show();
+        <?= $id ?>fire = function() {
+            const toast<?= $id ?> = new bootstrap.Toast(document.getElementById('toast<?= $id ?>'));
+            toast<?= $id ?>.show();
+        }
     } else if (bootstrapVersion.major === 4 && window.jQuery) {
-        $('#toast<?= $id ?>').toast('show');
+        <?= $id ?>fire = function() {
+            $('#toast<?= $id ?>').toast('show');
+        }
     }
+    if (doFire) <?= $id ?>fire();
+    window.<?= $id ?>fire = <?= $id ?>fire;
 </script>
