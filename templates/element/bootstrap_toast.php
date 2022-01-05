@@ -1,4 +1,4 @@
-<!--Needs Bootstrap 5-->
+<!--Needs Bootstrap 4 or 5-->
 <style>
     .toast {
         position: sticky;
@@ -21,6 +21,7 @@
 //    'message' => 'testing',
 //    'top' => '60px',
 //    'id' => 'abc',
+//    'delay' => 10000,
 //])
 // USAGE fire with example
 //<button id="fireABC">FIRE</button>
@@ -34,6 +35,7 @@
  * @var array $params
  * @var string $message
  * @var string $id
+ * @var int $delay
  * @var bool $fire
  */
 $class = 'message';
@@ -55,9 +57,13 @@ if(!isset($id)) {
     $id = uniqid();
 }
 
+if(!isset($delay)) {
+    $delay = '';
+}
+
 ?>
 
-<div id="toast<?= $id ?>" class="toast align-items-center text-white bg-<?= $alertColor ?? 'success' ?> border-0" role="alert" aria-live="assertive" aria-atomic="true">
+<div id="toast<?= $id ?>" data-delay="<?= $delay ?>" class="toast align-items-center text-white bg-<?= $alertColor ?? 'success' ?> border-0" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="d-flex">
         <div class="toast-body">
             <?= $message ?>
