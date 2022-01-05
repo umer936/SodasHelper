@@ -68,7 +68,9 @@ if(!isset($delay)) {
         <div class="toast-body">
             <?= $message ?>
         </div>
-        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto text-white close" data-bs-dismiss="toast" data-dismiss="toast" aria-label="Close">
+            <span aria-hidden="true"></span>
+        </button>
     </div>
 </div>
 
@@ -88,6 +90,7 @@ if(!isset($delay)) {
             toast<?= $id ?>.show();
         }
     } else if (bootstrapVersion.major === 4 && window.jQuery) {
+        document.querySelector('.toast > .d-flex > button > span').textContent = '×';
         <?= $id ?>fire = function() {
             $('#toast<?= $id ?>').toast('show');
         }
