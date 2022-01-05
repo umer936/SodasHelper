@@ -38,7 +38,7 @@
  * @var int $delay
  * @var bool $fire
  */
-$class = 'message';
+$class = '';
 if (!empty($params['class'])) {
     if (is_array($params['class'])) {
         array_push($params['class'], $class);
@@ -63,7 +63,7 @@ if(!isset($delay)) {
 
 ?>
 
-<div id="toast<?= $id ?>" data-delay="<?= $delay ?>" class="toast align-items-center text-white bg-<?= $alertColor ?? 'success' ?> border-0" role="alert" aria-live="assertive" aria-atomic="true">
+<div id="toast<?= $id ?>" data-delay="<?= $delay ?>" class="<?= $class ?> toast align-items-center text-white bg-<?= $alertColor ?? 'success' ?> border-0" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="d-flex">
         <div class="toast-body">
             <?= $message ?>
