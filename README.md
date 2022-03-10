@@ -11,11 +11,8 @@ composer require swri-sodas/sodas-helper
 ```
 
 TODO:
-elements
-start and end time
-readmore
-SDDAS (generic plotting) - catalog/DB
-plotting (idl/python/sddas/java (autoplot)) - hpca/
-datatables
-spawning a long running process - geoviz/plotting
-bootstrap 5 toasts (notifications)
+* start and end time
+* SDDAS (generic plotting) - catalog/DB
+* plotting (idl/python/sddas/java (autoplot)) - hpca/
+* datatables
+* spawning a long running process - geoviz/plotting
