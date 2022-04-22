@@ -10,6 +10,17 @@ The recommended way to install composer packages is:
 composer require swri-sodas/sodas-helper
 ```
 
+### Includes: 
+Elements:
+- Bootstrap toast
+- File dropper element
+- Read more element
+
+TinyMCE configuration: 
+- Sets for TinyMCE 6 and adds bootstrap-like styling
+- Requires https://github.com/CakeDC/TinyMCE
+- Replaces CkEditor in our sites
+
 TODO:
 * start and end time
 * SDDAS (generic plotting) - catalog/DB
