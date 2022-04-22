@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace SodasHelper;
 
 use Cake\Core\BasePlugin;
+use Cake\Core\Configure;
 use Cake\Core\PluginApplicationInterface;
 use Cake\Http\MiddlewareQueue;
 use Cake\Routing\RouteBuilder;
@@ -24,6 +25,22 @@ class Plugin extends BasePlugin
      */
     public function bootstrap(PluginApplicationInterface $app): void
     {
+        /** Add TinyMCE options **/
+        /** Requires https://github.com/CakeDC/TinyMCE **/
+        Configure::write('TinyMCE.settings', ['script' => 'https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.0.1/tinymce.min.js']);
+        Configure::write('TinyMCE.editorOptions', [
+            'selector' => '.tinymce',
+            'plugins' => 'image lists link anchor charmap autolink',
+            'toolbar' => 'blocks | bold italic underline strikethrough bullist numlist | link image charmap',
+            'menubar' => false,
+            'image_uploadtab' => true,
+            'images_upload_url' => '/',
+            'branding' => false,
+            'browser_spellcheck' => true,
+            'setup' => [
+                'function' => "(editor) => {editor.on('init', () => {editor.getContainer().style.transition = 'border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out';});editor.on('focus', () => {editor.getContainer().style.boxShadow = '0 0 0 .2rem rgba(0, 123, 255, .25)';editor.getContainer().style.borderColor = '#80bdff';});editor.on('blur', () => {editor.getContainer().style.boxShadow = '';editor.getContainer().style.borderColor = '';});}"
+            ]
+        ]);
     }
 
     /**
