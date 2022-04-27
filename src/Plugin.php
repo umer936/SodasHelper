@@ -6,6 +6,9 @@ namespace SodasHelper;
 use Cake\Core\BasePlugin;
 use Cake\Core\Configure;
 use Cake\Core\PluginApplicationInterface;
+use Cake\Http\Middleware\CsrfProtectionMiddleware;
+use Cake\Http\Middleware\HttpsEnforcerMiddleware;
+use Cake\Http\Middleware\SecurityHeadersMiddleware;
 use Cake\Http\MiddlewareQueue;
 use Cake\Routing\RouteBuilder;
 
@@ -66,15 +69,45 @@ class Plugin extends BasePlugin
         parent::routes($routes);
     }
 
+    private function isSecure()
+    {
+        return (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] === 443;
+    }
+
     /**
      * Add middleware for the plugin.
      *
-     * @param \Cake\Http\MiddlewareQueue $middleware The middleware queue to update.
+     * @param \Cake\Http\MiddlewareQueue $middlewareQueue
      * @return \Cake\Http\MiddlewareQueue
      */
     public function middleware(MiddlewareQueue $middlewareQueue): MiddlewareQueue
     {
+        $options = ['httponly' => true];
+        if ($this->isSecure()) {
+            $options = array_merge($options, ['secure' => true]);
+        }
+        $securityHeaders = new SecurityHeadersMiddleware();
+        $securityHeaders
+            ->setCrossDomainPolicy('none')
+            ->setReferrerPolicy()
+            ->setXFrameOptions()
+            ->setXssProtection()
+            ->noOpen()
+            ->noSniff();
+
         // Add your middlewares here
+        $middlewareQueue
+            ->add(new HttpsEnforcerMiddleware([
+                    'disableOnDebug' => false,
+                    'headers' => ['X-Https-Upgrade' => 1],
+                    'hsts' => [
+                        'maxAge' => YEAR,
+                        'includeSubdomains' => true,
+                        'preload' => true,
+                    ],
+                ]))
+            ->add($securityHeaders)
+            ->add(new CsrfProtectionMiddleware($options));
 
         return $middlewareQueue;
     }

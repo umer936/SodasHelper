@@ -21,6 +21,11 @@ TinyMCE configuration:
 - Requires https://github.com/CakeDC/TinyMCE
 - Replaces CkEditor in our sites
 
+Middlewares configuration:
+- Set security headers
+- HttpsEnforcerMiddleware
+- CsrfProtectionMiddleware settings for https
+
 TODO:
 * start and end time
 * SDDAS (generic plotting) - catalog/DB
