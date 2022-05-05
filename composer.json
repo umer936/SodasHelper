@@ -21,5 +21,6 @@
             "SodasHelper\\Test\\": "tests/",
             "Cake\\Test\\": "vendor/cakephp/cakephp/tests/"
         }
-    }
+    },
+    "version": "1.0.0"
 }
