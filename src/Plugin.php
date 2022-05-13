@@ -35,11 +35,11 @@ class Plugin extends BasePlugin
         ]);
         Configure::write('TinyMCE.editorOptions', [
             'selector' => '.tinymce',
-            'plugins' => 'image lists link anchor charmap autolink',
-            'toolbar' => 'blocks | bold italic underline strikethrough bullist numlist | link image charmap',
+            'plugins' => 'image lists link anchor charmap autolink code',
+            'toolbar' => 'blocks | bold italic underline strikethrough bullist numlist | link image charmap | code',
             'menubar' => false,
             'image_uploadtab' => true,
-            'images_upload_url' => '/',
+            'images_upload_url' => '/webroot/upload',
             'branding' => false,
             'browser_spellcheck' => true,
             'setup' => [
