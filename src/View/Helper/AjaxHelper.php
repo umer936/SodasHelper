@@ -25,12 +25,6 @@ class AjaxHelper extends Helper
 
     protected $_config;
 
-    /** this function is built in to PHP 8. Needs to be defined for PHP < 8 */
-    private function str_starts_with($haystack, $needle)
-    {
-        return strpos($haystack, $needle) === 0;
-    }
-
     /**
      * Just need: Button id (spinner in the button), url, success (id of div to update, and ), error
      */
@@ -42,15 +36,21 @@ class AjaxHelper extends Helper
             $url = $this->Url->build($url);
         }
 
-        if (!$this->str_starts_with($buttonId, '#')) {
+        /** this function is built in to PHP 8. Needs to be defined for PHP < 8 */
+        function str_starts_with($haystack, $needle)
+        {
+            return strpos($haystack, $needle) === 0;
+        }
+
+        if (!str_starts_with($buttonId, '#')) {
             $buttonId = "#$buttonId";
         }
 
-        if (!$this->str_starts_with($divToUpdate, '#')) {
+        if (!str_starts_with($divToUpdate, '#')) {
             $divToUpdate = "#$divToUpdate";
         }
 
-        if (!$this->str_starts_with($divToError, '#')) {
+        if (isset($divToError) && !str_starts_with($divToError, '#')) {
             $divToError = "#$divToError";
         }
 
