@@ -37,9 +37,11 @@ class AjaxHelper extends Helper
         }
 
         /** this function is built in to PHP 8. Needs to be defined for PHP < 8 */
-        function str_starts_with($haystack, $needle)
-        {
-            return strpos($haystack, $needle) === 0;
+        if (!function_exists('str_starts_with')) {
+            function str_starts_with($haystack, $needle): bool
+            {
+                return strpos($haystack, $needle) === 0;
+            }
         }
 
         if (!str_starts_with($buttonId, '#')) {
