@@ -15,6 +15,7 @@ composer require swri-sodas/sodas-helper
 - Bootstrap toast
 - File dropper element
 - Read more element
+- Back to top element
 
 #### TinyMCE configuration: 
 - Sets for TinyMCE 6 and adds bootstrap-like styling
