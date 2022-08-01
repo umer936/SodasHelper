@@ -19,3 +19,13 @@ input[type=number]::-webkit-outer-spin-button {
 .was-validated :not(.custom-valid).form-control:valid:focus {
     box-shadow:0 0 0 .2rem rgba(0,123,255,.25)
 }
+
+.form-select:valid {
+    border-color: revert !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e") !important;
+    padding-right: 0 !important;
+}
+
+.form-select:valid:focus {
+    box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25) !important;
+}
