@@ -22,6 +22,11 @@ composer require swri-sodas/sodas-helper
 - Requires https://github.com/CakeDC/TinyMCE
 - Replaces CkEditor in our sites
 
+#### CSS
+- Bootstrap overrides 
+- disables the up/down arrows on number inputs
+- disables the green checkmark on number inputs
+
 How to use:
 
 ```
