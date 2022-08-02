@@ -1,11 +1,11 @@
 .readMore .collapse:not(.show) {
     display: block;
-    height: 3rem;
+    height: 6rem;
     overflow: hidden;
 }
 
 .readMore .collapsing {
-    height: 3rem;
+    height: 6rem;
 }
 
 .readMore .collapse {
