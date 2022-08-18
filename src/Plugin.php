@@ -31,13 +31,15 @@ class Plugin extends BasePlugin
         /** Add TinyMCE options **/
         /** Requires https://github.com/CakeDC/TinyMCE **/
         Configure::write('TinyMCE.settings', [
-            'script' => 'https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.0.2/tinymce.min.js'
+            'script' => 'https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.1.2/tinymce.min.js'
         ]);
         Configure::write('TinyMCE.editorOptions', [
             'selector' => '.tinymce',
-            'plugins' => 'image lists link anchor charmap autolink code',
-            'toolbar' => 'blocks | bold italic underline strikethrough bullist numlist | link image charmap | code',
+            'plugins' => 'image lists link anchor charmap autolink code emoticons fullscreen media quickbars preview',
+            'toolbar' => 'blocks | bold italic underline strikethrough align bullist numlist | link image media charmap emoticons | code fullscreen preview',
             'menubar' => false,
+            'extended_valid_elements' => "style,link[href|rel]",
+            'custom_elements' => "style,link,~link",
             'image_uploadtab' => true,
             'images_upload_url' => '/webroot/upload',
             'branding' => false,
