@@ -1,6 +1,13 @@
 export let bootstrapVersion;
 bootstrap_load_or_detect();
 
+export const dayOfYear = (date) => Math.round((date - new Date(date.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+
+const ready = (callback) => {
+    if (document.readyState !== "loading") callback();
+    else document.addEventListener("DOMContentLoaded", callback);
+};
+
 function parseVersionString (str) {
     if (typeof(str) != 'string') { return false; }
     const x = str.split('.');
