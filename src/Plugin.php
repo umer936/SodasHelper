@@ -86,9 +86,12 @@ class Plugin extends BasePlugin
      */
     public function middleware(MiddlewareQueue $middlewareQueue): MiddlewareQueue
     {
-        $options = ['httponly' => true, 'cookieName' => 'csrfToken' . (SITE_KEY ?? '')];
+        $options = ['httponly' => true];
         if ($this->isSecure()) {
             $options = array_merge($options, ['secure' => true]);
+        }
+        if (defined('SITE_KEY')) {
+            $options = array_merge($options, ['cookieName' => 'csrfToken' . (SITE_KEY ?? '')]);
         }
         $securityHeaders = new SecurityHeadersMiddleware();
         $securityHeaders
