@@ -105,7 +105,7 @@ class Plugin extends BasePlugin
         // Add your middlewares here
         $middlewareQueue
             ->add(new HttpsEnforcerMiddleware([
-                    'disableOnDebug' => false,
+                    'disableOnDebug' => Configure::read('disableHTTPS') ?? false,
                     'headers' => ['X-Https-Upgrade' => 1],
                     'hsts' => [
                         'maxAge' => YEAR,
