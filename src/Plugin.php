@@ -31,7 +31,7 @@ class Plugin extends BasePlugin
         /** Add TinyMCE options **/
         /** Requires https://github.com/CakeDC/TinyMCE **/
         Configure::write('TinyMCE.settings', [
-            'script' => 'https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.1.2/tinymce.min.js'
+            'script' => 'https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.5.1/tinymce.min.js'
         ]);
         Configure::write('TinyMCE.editorOptions', [
             'selector' => '.tinymce',

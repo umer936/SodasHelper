@@ -75,7 +75,7 @@ if(!isset($delay)) {
 </div>
 
 <script type="module">
-    import { bootstrapVersion } from '<?= $this->Url->script('SodasHelper.sodas_js_scripts') ?>';
+    import { bootstrapVersion } from '<?= $this->Url->script('SodasHelper.sodas_js_scripts.min') ?>';
     let <?= $id ?>fire;
 
     const doFire = <?php
