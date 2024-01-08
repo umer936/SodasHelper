@@ -108,7 +108,7 @@ class Plugin extends BasePlugin
                     'disableOnDebug' => Configure::read('disableHTTPS') ?? false,
                     'headers' => ['X-Https-Upgrade' => 1],
                     'hsts' => [
-                        'maxAge' => YEAR,
+                        'maxAge' => 60 * 60 * 24 * 365, // YEAR
                         'includeSubdomains' => true,
                         'preload' => true,
                     ],

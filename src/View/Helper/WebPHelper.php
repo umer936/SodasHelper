@@ -10,13 +10,13 @@ use Cake\View\Helper;
  */
 class WebPHelper extends Helper
 {
-    public $helpers = ['Html', 'Url'];
+    public array $helpers = ['Html', 'Url'];
     /**
      * Default configuration.
      *
      * @var array<string, mixed>
      */
-    protected $_defaultConfig = [];
+    protected array $_defaultConfig = [];
 
 // Use instead of Html->image
 // can pass an alt_ext that has a . in it otherwise .png!

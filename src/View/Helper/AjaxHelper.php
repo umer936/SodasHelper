@@ -21,9 +21,9 @@ use Cake\View\Helper;
  */
 class AjaxHelper extends Helper
 {
-    protected $helpers = ['Html', 'Url'];
+    protected array $helpers = ['Html', 'Url'];
 
-    protected $_config;
+    protected array $_config;
 
     /**
      * Just need: Button id (spinner in the button), url, success (id of div to update, and ), error
