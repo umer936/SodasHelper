@@ -18,5 +18,5 @@
             "Cake\\Test\\": "vendor/cakephp/cakephp/tests/"
         }
     },
-    "version": "2.0.2"
+    "version": "2.0.3"
 }
