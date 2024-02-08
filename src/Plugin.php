@@ -50,6 +50,8 @@ class Plugin extends BasePlugin
         ]);
 
         Configure::write('DebugKit.safeTld', ['edu', 'org']);
+        $newPanels = array_merge(Configure::read('DebugKit.panels') ?? [], ['SodasHelper.LogsFolder']);
+        Configure::write('DebugKit.panels', $newPanels);
     }
 
     /**
