@@ -12,10 +12,14 @@
     margin-bottom: 0;
 }
 
-.readMore a.collapsed::after {
+.readMore a {
+    text-decoration: underline;
+}
+
+.readMore a[data-bs-toggle="collapse"].collapsed::after {
     content: '+ Show More';
 }
 
-.readMore a:not(.collapsed)::after {
+.readMore a[data-bs-toggle="collapse"]:not(.collapsed)::after {
     content: '- Show Less';
 }
