@@ -30,9 +30,6 @@ class Plugin extends BasePlugin
     {
         /** Add TinyMCE options **/
         /** Requires https://github.com/CakeDC/TinyMCE **/
-        Configure::write('TinyMCE.settings', [
-            'script' => 'https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.2/tinymce.min.js'
-        ]);
         Configure::write('TinyMCE.editorOptions', [
             'selector' => '.tinymce',
             'plugins' => 'image lists link anchor charmap autolink code emoticons fullscreen media quickbars preview',
