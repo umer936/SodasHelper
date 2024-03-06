@@ -10,6 +10,7 @@ declare(strict_types=1);
  * @copyright Copyright 2013 - 2023, Cake Development Corporation (https://www.cakedc.com)
  * @license MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
+
 namespace SodasHelper\View\Helper;
 
 use Cake\Core\Configure;
@@ -54,7 +55,7 @@ class TinyMCEHelper extends Helper
      * @var array<string, mixed>
      */
     protected array $_defaultConfig = [
-        'script' => 'xx',
+        'script' => null,
         'loadScript' => true,
     ];
 
@@ -72,6 +73,10 @@ class TinyMCEHelper extends Helper
             $this->configs = $configs;
         }
         $this->settings = array_merge($this->_defaultConfig, Configure::read('TinyMCE.settings', []));
+
+        if (empty($this->settings['script'])) {
+            dd('NEED TO SET TinyMCE.settings.script!');
+        }
     }
 
     /**
@@ -122,17 +127,25 @@ class TinyMCEHelper extends Helper
     public function beforeRender(EventInterface $event, string $viewFile): void
     {
         $appOptions = Configure::read('TinyMCE.editorOptions');
+
         if ($appOptions !== false && is_array($appOptions)) {
             $this->_defaultConfig = $appOptions;
         }
+
         if ($this->settings['loadScript'] === true) {
-            $this->Html->script(
-                $this->settings['script'],
-                [
-                    'block' => true,
-                    'referrerpolicy' => 'origin',
-                ]
-            );
+            $scriptOptions = [
+                'block' => true,
+                'referrerpolicy' => 'origin',
+            ];
+
+            if (!empty($this->settings['integrity'])) {
+                $scriptOptions += [
+                    'crossorigin' => 'anonymous',
+                    'integrity' => $this->settings['integrity'],
+                ];
+            }
+
+            $this->Html->script($this->settings['script'], $scriptOptions);
         }
     }
 }
