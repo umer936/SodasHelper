@@ -76,7 +76,9 @@ class Plugin extends BasePlugin
 
     private function isSecure()
     {
-        return (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] === 443;
+        $https = !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
+        $serverPort = isset($_SERVER['SERVER_PORT']) ? $_SERVER['SERVER_PORT'] : null;
+        return $https || $serverPort === 443;
     }
 
     /**
