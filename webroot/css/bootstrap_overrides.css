@@ -12,8 +12,8 @@ input[type=number]::-webkit-outer-spin-button {
 
 /** Disables the green checkmark on Bootstrap validation inputs **/
 .was-validated :not(.custom-valid).form-control:valid {
-    background:revert;
-    border-color:revert;
+    background-image: revert;
+    border-color: revert;
     padding-right: 0;
 }
 .was-validated :not(.custom-valid).form-control:valid:focus {
